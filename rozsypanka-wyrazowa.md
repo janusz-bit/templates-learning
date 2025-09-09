@@ -9,6 +9,7 @@
 10. RESULTS
 11. BUTT...
 13. IS
+14. NOT
 15. WHY
 16. WE
 17. DO
