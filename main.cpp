@@ -1,25 +1,7 @@
-// Zadanie - VectorMap
-// Napisz klasę szablonową VectorMap, która ma reprezentować przekombinowaną
-// std::map.
+// Zadanie - isIntKey()
+// Napisz metodą isIntKey() w VectorMap. Powinna ona zwracać true gdy KeyType jest intem i lub false w przeciwnym przypadku.
 
-// Wewnątrz ma ona mieć 2 std::vector tego samego rozmiaru. Pierwszy vector
-// będzie przechowywał klucze, a drugi wartości.
-
-// Elementy na tej samej pozycji w obu wektorach tworzą parę, tak jak 1 i c na
-// poniższym przykładzie.
-
-// VectorMap<int, char> map;
-// map.insert(1, 'c');
-// map[1] = 'e';           // replaces value under 1
-// std::cout << map[1];    // prints 'e'
-// map.at(2);              // throw std::out_of_range
-// Zaimplementuj metody insert(), operator[], at().
-
-// Nie przejmuj się możliwymi duplikatami kluczy. To nie jest ważne w tym
-// zadaniu. Możesz za to zaimplementować dodatkowe metody z interfejsu std::map
-// 🙂
-
-// Używaj cppreference.
+// Przejrzyj listę <type_traits> w poszukiwaniu inspiracji 🙂
 
 #include <algorithm>
 #include <cstddef>
@@ -52,12 +34,20 @@ public:
   T2 &operator[](const T1 &key) { return at_(key, true); }
 
   T2 &at(const T1 &key) { return at_(key); }
+
+  bool isIntKey()
+  {
+    return std::is_same_v<T1, int>;
+  }
 };
 
 int main() {
-  VectorMap<int, char> map;
+  VectorMap<double, char> map;
+  VectorMap<int, char> map1;
   map.insert(1, 'c');
   map[1] = 'e';        // replaces value under 1
-  std::cout << map[1]; // prints 'e'
+  std::cout << map[1]<<'\n'<<map.isIntKey()<<'\n'; // prints 'e'
+  std::cout<<map1.isIntKey()<<'\n';
+
   map.at(2);           // throw std::out_of_range
 }
