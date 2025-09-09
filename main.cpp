@@ -1,7 +1,9 @@
-// Zadanie - isIntKey()
-// Napisz metodą isIntKey() w VectorMap. Powinna ona zwracać true gdy KeyType jest intem i lub false w przeciwnym przypadku.
+// Zadanie - is_int_key
+// W klasie VectorMap dodaj stałą is_int_key typu bool. Powinna być ona ustawiona na true gdy klucz jest typu int, a na false w przeciwnym przypadku.
 
-// Przejrzyj listę <type_traits> w poszukiwaniu inspiracji 🙂
+// Ogólnie ta stała powinna robić to samo co metoda isIntKey(), z tą różnicą, że nie musimy tworzyć obieku klasy, aby ją dostać (to właśnie jest metaprogramowanie).
+
+// Poszukaj przydatnych rzeczy w bibliotece <type_traits> 🙂
 
 #include <algorithm>
 #include <cstddef>
@@ -39,15 +41,16 @@ public:
   {
     return std::is_same_v<T1, int>;
   }
+
+  static constexpr bool is_int_key = std::is_same_v<T1, int>;
 };
 
 int main() {
   VectorMap<double, char> map;
-  VectorMap<int, char> map1;
   map.insert(1, 'c');
   map[1] = 'e';        // replaces value under 1
   std::cout << map[1]<<'\n'<<map.isIntKey()<<'\n'; // prints 'e'
-  std::cout<<map1.isIntKey()<<'\n';
+  std::cout<<VectorMap<int, char>::is_int_key<<'\n';
 
   map.at(2);           // throw std::out_of_range
 }
