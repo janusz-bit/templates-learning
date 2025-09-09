@@ -1,7 +1,9 @@
 3. LIKE
 4. SEX
 5. IT
+7. GIVE
 8. SOME
 9. CONCRETE
+13. IS
 15. WHY
 17. DO
